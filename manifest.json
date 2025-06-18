@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Custom Input Box Everywhere",
+  "version": "1.0",
+  "description": "A smart floating input box that improves typing experience",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["styles.css"]
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "commands": {
+    "toggle-habit-mode": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+H"
+      },
+      "description": "Toggle Habit Mode"
+    },
+    "toggle-advanced-mode": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+A"
+      },
+      "description": "Toggle Advanced Mode"
+    }
+  }
+}
