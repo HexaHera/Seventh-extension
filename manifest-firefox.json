@@ -1,17 +1,15 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "Custom Input Box Everywhere",
   "version": "1.0",
-  "description": "Add a custom input box to any website with Habit Mode and Advanced Mode features",
+  "description": "A smart floating input box that improves typing experience with AI capabilities",
   "permissions": [
     "storage",
     "activeTab",
-    "scripting"
-  ],
-  "host_permissions": [
+    "scripting",
     "<all_urls>"
   ],
-  "action": {
+  "browser_action": {
     "default_popup": "popup.html",
     "default_icon": {
       "16": "icons/icon16.png",
@@ -30,21 +28,26 @@
         "<all_urls>"
       ],
       "js": [
+        "browser-polyfill.js",
         "content.js"
       ],
       "css": [
         "styles.css"
-      ]
+      ],
+      "run_at": "document_end"
     }
   ],
   "background": {
-    "service_worker": "background.js"
+    "scripts": [
+      "browser-polyfill.js",
+      "background.js"
+    ]
   },
   "commands": {
     "toggle-habit-mode": {
       "suggested_key": {
-        "default": "Ctrl+Shift+H",
-        "mac": "Command+Shift+H"
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
       },
       "description": "Toggle Habit Mode"
     },
@@ -57,13 +60,6 @@
     }
   },
   "web_accessible_resources": [
-    {
-      "resources": [
-        "icons/*"
-      ],
-      "matches": [
-        "<all_urls>"
-      ]
-    }
+    "icons/*"
   ]
 }

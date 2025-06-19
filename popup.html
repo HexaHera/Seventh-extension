@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Custom Input Box Everywhere</title>
+  <style>
+    body {
+      width: 300px;
+      padding: 16px;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .toggle-label {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .toggle {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      height: 20px;
+    }
+
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 20px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked+.slider {
+      background-color: #4a90e2;
+    }
+
+    input:checked+.slider:before {
+      transform: translateX(20px);
+    }
+
+    .api-key-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .api-key-input {
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .save-button {
+      padding: 8px 16px;
+      background: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .save-button:hover {
+      background: #357abd;
+    }
+
+    #statusMessage {
+      margin-top: 8px;
+      font-size: 14px;
+      text-align: center;
+      min-height: 20px;
+      padding: 4px;
+    }
+
+    #statusMessage.success {
+      color: #4a90e2;
+    }
+
+    #statusMessage.error {
+      color: #e24a4a;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="toggle-container">
+      <span class="toggle-label">Habit Mode</span>
+      <label class="toggle">
+        <input type="checkbox" id="habitModeToggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="toggle-container">
+      <span class="toggle-label">Advanced Mode</span>
+      <label class="toggle">
+        <input type="checkbox" id="advancedModeToggle">
+        <span class="slider"></span>
+      </label>
+    </div>
+
+    <div class="api-key-container">
+      <input type="password" id="apiKeyInput" class="api-key-input" placeholder="Enter OpenAI API Key">
+      <button id="saveApiKey" class="save-button">Save API Key</button>
+    </div>
+
+    <div id="statusMessage"></div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+
+</html>
